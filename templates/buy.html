@@ -69,7 +69,15 @@
         return params;
     }
 
-    // Populate form fields based on query parameters
+    // Function to calculate total cost
+    function calculateTotalCost() {
+        const cost = parseFloat(document.querySelector('input[name="cost"]').value) || 0;
+        const quantity = parseInt(document.querySelector('input[name="quantity"]').value) || 0;
+        const totalCost = cost * quantity;
+        document.querySelector('input[name="total_cost"]').value = totalCost.toFixed(2);
+    }
+
+    // Populate form fields based on query parameters and set up event listeners
     document.addEventListener('DOMContentLoaded', () => {
         const params = getQueryParams();
         // Set the values of the form fields
@@ -85,6 +93,13 @@
         document.querySelector('input[name="quantity"]').value = params.quantity || '';
         document.querySelector('input[name="card_number"]').value = params.card_no || '';
         document.querySelector('input[name="cvv"]').value = params.cvv || '';
+
+        // Calculate the initial total cost
+        calculateTotalCost();
+
+        // Add event listeners to update the total cost when quantity or cost changes
+        document.querySelector('input[name="quantity"]').addEventListener('input', calculateTotalCost);
+        document.querySelector('input[name="cost"]').addEventListener('input', calculateTotalCost);
     });
 </script>
 </head>
@@ -106,6 +121,11 @@
                     <form method="POST">
                         {% csrf_token %}
                         {{ form.as_p }}
+                        <!-- Add Total Cost field -->
+                        <div class="form-group">
+                            <label for="total_cost">Total Cost</label>
+                            <input type="text" name="total_cost" id="total_cost" class="form-control" readonly>
+                        </div>
                         <input type="submit" value="Place Order" class="btn btn-primary mt-4">
                         <div class="text-center mt-4">
                             <a href="{% url 'post' %}" class="button">BACK</a>
