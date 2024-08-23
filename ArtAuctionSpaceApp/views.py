@@ -10,6 +10,19 @@ from django.contrib.auth import login
 from .forms import SignUpForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
+from .forms import OrderForm
+
+def buy(request):
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('buy')  # Redirect to a success page or another view
+    else:
+        form = OrderForm()
+    
+    return render(request, 'buy.html', {'form': form})
+
 def signup_view(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST, request.FILES)
@@ -57,9 +70,6 @@ def forgotpassword(request):
 
 def loggedin(request):
     return render(request, 'loggedin.html')
-
-def buy(request):
-    return render(request, 'buy.html')
 
 def post(request):
     return render(request, 'post.html')

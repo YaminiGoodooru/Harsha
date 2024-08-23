@@ -1,6 +1,17 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from .models import Order
+
+class OrderForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = [
+            'full_name', 'email', 'phone','pid',
+            'street_address', 'city', 'state', 'zip',
+            'card_number', 'cvv', 'quantity', 'total_price'
+        ]
+
 
 class SignUpForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput, required=True)
