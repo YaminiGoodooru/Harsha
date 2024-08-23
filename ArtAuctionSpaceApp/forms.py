@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from .models import Order
+from .models import Paintings
 
 class OrderForm(forms.ModelForm):
     class Meta:
@@ -31,3 +32,11 @@ class SignUpForm(forms.ModelForm):
             raise ValidationError("Passwords do not match")
 
         return cleaned_data
+
+class PaintingsForm(forms.ModelForm):
+    class Meta:
+        model = Paintings
+        fields = [
+            'email', 'artname', 'artistname', 'materials',
+            'mobileno', 'upi_id', 'price', 'description', 'image'
+        ]

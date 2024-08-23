@@ -6,11 +6,9 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login
-from django.contrib.auth import login
-from .forms import SignUpForm
+from .forms import SignUpForm,PaintingsForm,OrderForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from .models import Painting
-from .forms import OrderForm
+from .models import Paintings
 
 def buy(request):
     if request.method == 'POST':
@@ -71,11 +69,18 @@ def forgotpassword(request):
 
 
 def loggedin(request):
-    paintings = Painting.objects.all()
-    return render(request, 'loggedin.html', {'paintings': paintings})
+    return render(request,'loggedin.html')
 
 def post(request):
-    return render(request, 'post.html')
+    if request.method == 'POST':
+        form = PaintingsForm(request.POST, request.FILES)  # Handle file uploads
+        if form.is_valid():
+            form.save()  # Save form data to the database
+            return redirect('post')  # Redirect to a success page or another view
+    else:
+        form = PaintingsForm()
+
+    return render(request, 'post.html', {'form': form})
 
 def profile(request):
     return render(request, 'profile.html')

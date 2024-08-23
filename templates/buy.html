@@ -31,12 +31,15 @@
     .button {
         background-color: #009999;
         color: #fff;
-        padding: 15px 200px;
+        padding: 15px 30px; /* Adjust padding for consistent button size */
         border: none;
         border-radius: 5px;
         cursor: pointer;
         text-decoration: none;
-        font-size: 14px;
+        font-size: 16px; /* Adjust font size for consistent appearance */
+        display: inline-block; /* Ensures buttons align correctly */
+        text-align: center; /* Centers text inside button */
+        margin: 5px; /* Adds spacing between buttons */
     }
     .logo-text {
         margin-left: 7px;
@@ -45,15 +48,6 @@
         vertical-align: middle;
         font-weight: bold;
         color: white;
-    }
-    .center-section input[type="submit"] {
-        background-color: #009999;
-        color: #fff;
-        padding: 15px 30px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 14px;
     }
 </style>
 <script>
@@ -75,6 +69,35 @@
         const quantity = parseInt(document.querySelector('input[name="quantity"]').value) || 0;
         const totalCost = cost * quantity;
         document.querySelector('input[name="total_cost"]').value = totalCost.toFixed(2);
+    }
+
+    // Function to validate input
+    function validateInput() {
+        const cvv = document.querySelector('input[name="cvv"]').value;
+        const cardNumber = document.querySelector('input[name="card_number"]').value;
+        const city = document.querySelector('input[name="city"]').value;
+        const state = document.querySelector('input[name="state"]').value;
+        const name = document.querySelector('input[name="full_name"]').value;
+
+        // Validate CVV (exactly 3 digits)
+        if (!/^\d{3}$/.test(cvv)) {
+            alert('CVV must be exactly 3 digits.');
+            return false;
+        }
+
+        // Validate Card Number (exactly 12 digits)
+        if (!/^\d{12}$/.test(cardNumber)) {
+            alert('Card Number must be exactly 12 digits.');
+            return false;
+        }
+
+        // Validate City, State, and Name (must not contain numbers)
+        if (/\d/.test(city) || /\d/.test(state) || /\d/.test(name)) {
+            alert('City, State, and Full Name must not contain numbers.');
+            return false;
+        }
+
+        return true;
     }
 
     // Populate form fields based on query parameters and set up event listeners
@@ -100,6 +123,13 @@
         // Add event listeners to update the total cost when quantity or cost changes
         document.querySelector('input[name="quantity"]').addEventListener('input', calculateTotalCost);
         document.querySelector('input[name="cost"]').addEventListener('input', calculateTotalCost);
+
+        // Add form validation before submission
+        document.querySelector('form').addEventListener('submit', (event) => {
+            if (!validateInput()) {
+                event.preventDefault(); // Prevent form submission if validation fails
+            }
+        });
     });
 </script>
 </head>
@@ -126,9 +156,9 @@
                             <label for="total_cost">Total Cost</label>
                             <input type="text" name="total_cost" id="total_cost" class="form-control" readonly>
                         </div>
-                        <input type="submit" value="Place Order" class="btn btn-primary mt-4">
                         <div class="text-center mt-4">
-                            <a href="{% url 'post' %}" class="button">BACK</a>
+                            <input type="submit" value="Place Order" class="button">
+                            <a href="{% url 'loggedin' %}" class="button">BACK</a>
                         </div>
                     </form>
                 </div>
