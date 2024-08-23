@@ -23,6 +23,5 @@ class UserAdmin(BaseUserAdmin):
 
 # Register the custom User admin
 admin.site.register(User, UserAdmin)
-
 admin.site.register(Order)
 admin.site.register(Painting)

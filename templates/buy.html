@@ -1,4 +1,3 @@
-<!-- place_order.html -->
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -57,11 +56,42 @@
         font-size: 14px;
     }
 </style>
+<script>
+    // Function to get query parameters from URL
+    function getQueryParams() {
+        const params = {};
+        const queryString = window.location.search.substring(1);
+        const regex = /([^&=]+)=([^&]*)/g;
+        let match;
+        while (match = regex.exec(queryString)) {
+            params[decodeURIComponent(match[1])] = decodeURIComponent(match[2]);
+        }
+        return params;
+    }
+
+    // Populate form fields based on query parameters
+    document.addEventListener('DOMContentLoaded', () => {
+        const params = getQueryParams();
+        // Set the values of the form fields
+        document.querySelector('input[name="pid"]').value = params.pid || '';
+        document.querySelector('input[name="cost"]').value = params.cost || '';
+        document.querySelector('input[name="full_name"]').value = params.name || '';
+        document.querySelector('input[name="phone"]').value = params.phone || '';
+        document.querySelector('input[name="email"]').value = params.email || '';
+        document.querySelector('input[name="street_address"]').value = params.street || '';
+        document.querySelector('input[name="zip"]').value = params.zip || '';
+        document.querySelector('input[name="state"]').value = params.state || '';
+        document.querySelector('input[name="city"]').value = params.city || '';
+        document.querySelector('input[name="quantity"]').value = params.quantity || '';
+        document.querySelector('input[name="card_number"]').value = params.card_no || '';
+        document.querySelector('input[name="cvv"]').value = params.cvv || '';
+    });
+</script>
 </head>
 <body>
     <div id="header">
         <div class="logo">
-            <img src="{% static 'G.jpg' %}" alt="ARY GALLERY" height="75" class="rounded-circle">
+            <img src="{% static 'G.jpg' %}" alt="ART GALLERY" height="75" class="rounded-circle">
             <span class="logo-text">ART GALLERY</span>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,9 +105,9 @@
                 <div class="col-lg-12 my-5 px-5">
                     <form method="POST">
                         {% csrf_token %}
-                        {{ form.as_p }}  <!-- Render the form as paragraphs -->
-                        <input type="submit" value="Place Order" class="container text-center mt-4" style="padding-top: 10px;">
-                        <div class="container text-center mt-4" style="padding-top: 20px;">
+                        {{ form.as_p }}
+                        <input type="submit" value="Place Order" class="btn btn-primary mt-4">
+                        <div class="text-center mt-4">
                             <a href="{% url 'post' %}" class="button">BACK</a>
                         </div>
                     </form>
