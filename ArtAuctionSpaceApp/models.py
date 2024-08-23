@@ -20,15 +20,15 @@ class Order(models.Model):
 
 
 class Paintings(models.Model):
-    email = models.EmailField(default='example@example.com')  # Default email value
-    artname = models.CharField(max_length=100, default='Unknown Art')  # Default art name
-    artistname = models.CharField(max_length=255, default='Unknown Artist')  # Default artist name
-    materials = models.TextField(default='Unknown materials')  # Default materials
-    mobileno = models.CharField(max_length=15, default='0000000000')  # Default mobile number
-    upi_id = models.CharField(max_length=50, default='example@upi')  # Default UPI ID
-    price = models.IntegerField(default=0)  # Default price
-    description = models.TextField(default='No description')  # Default description
-    image = models.ImageField(upload_to='art_images/', default='art_images/default.jpg')  # Default image path
+    email = models.EmailField()  # Removed default value
+    artname = models.CharField(max_length=100)  # Removed default value
+    artistname = models.CharField(max_length=255)  # Removed default value
+    materials = models.TextField()  # Removed default value
+    mobileno = models.CharField(max_length=15)  # Removed default value
+    upi_id = models.CharField(max_length=50)  # Removed default value
+    price = models.IntegerField()  # Removed default value
+    description = models.TextField()  # Removed default value
+    image = models.ImageField(upload_to='art_images/')  # Removed default value
 
     def __str__(self):
         return self.artname
