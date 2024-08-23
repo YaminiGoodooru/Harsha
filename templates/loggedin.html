@@ -44,7 +44,7 @@
         }
         #post-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
             padding: 20px;
         }
@@ -53,28 +53,47 @@
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        .post img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
         }
         .logo-text {
-    margin-left: 10px; /* Adjust the margin as needed to position the text correctly */
-    font-size: 24px; /* Adjust the font size */
-    font-weight: bold; /* Optionally, make the text bold */
-    color: white; /* Adjust the text color */
-}
+            margin-left: 10px; /* Adjust the margin as needed to position the text correctly */
+            font-size: 24px; /* Adjust the font size */
+            font-weight: bold; /* Optionally, make the text bold */
+            color: white; /* Adjust the text color */
+        }
+        .buy-button {
+            display: block;
+            margin: 10px auto;
+            padding: 10px 20px;
+            background-color: #009999;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .post-info {
+            margin: 10px 0;
+        }
     </style>
 </head>
 <body>
     <div id="header">
         <div class="logo">
-        <img src="{% static 'G.jpg' %}" alt="ARY GALLERY" height="100">
-        <span class="logo-text">ART GALLERY</span>
-    </div>
+            <img src="{% static 'G.jpg' %}" alt="ART GALLERY" height="100">
+            <span class="logo-text">ART GALLERY</span>
+        </div>
 
         <div class="navigation">
-            <a href="{%url 'loggedin'%}">Home</a>
-            <a href="{%url 'buy'%}">Buy</a>
-            <a href="{%url 'post' %}">Post</a>
-            <a href="{%url 'profile'%}">Profile</a>
-            <a href="{%url 'vieworders'%}">View Orders</a>
+            <a href="{% url 'loggedin' %}">Home</a>
+            <a href="{% url 'buy' %}">Buy</a>
+            <a href="{% url 'post' %}">Post</a>
+            <a href="{% url 'profile' %}">Profile</a>
+            <a href="{% url 'vieworders' %}">View Orders</a>
         </div>
     </div>
     <div id="search-bar">
@@ -86,20 +105,92 @@
                 Latest paintings
             </h2>
         </div>
-        </div>
-    <div id="post-grid">
+        <div id="post-grid">
+            <div class="post">
+                <img src="{% static 'oil painting.jpg' %}" alt="Oil Painting">
+                <h3>OIL PAINTING</h3>
+                <div class="post-info">
+                    <p>ID: 001</p>
+                    <p>Artist: John Doe</p>
+                    <p>Cost: $500</p>
+                </div>
+                <a href="{% url 'buy' %}" class="buy-button">Buy Now</a>
+            </div>
+            <div class="post">
+                <img src="{% static 'waterlilles.jpg' %}" alt="Watercolor Painting">
+                <h3>WATERCOLOR PAINTING</h3>
+                <div class="post-info">
+                    <p>ID: 002</p>
+                    <p>Artist: Jane Smith</p>
+                    <p>Cost: $600</p>
+                </div>
+                <a href="{% url 'buy' %}" class="buy-button">Buy Now</a>
+            </div>
+            <div class="post">
+                <img src="{% static 'abstract painting.jpg' %}" alt="Abstract Painting">
+                <h3>ABSTRACT PAINTING</h3>
+                <div class="post-info">
+                    <p>ID: 003</p>
+                    <p>Artist: Alice Johnson</p>
+                    <p>Cost: $700</p>
+                </div>
+                <a href="{% url 'buy' %}" class="buy-button">Buy Now</a>
+            </div>
+            <div class="post">
+                <img src="{% static 'acrylic painting.jpg' %}" alt="Acrylic Painting">
+                <h3>ACRYLIC PAINTING</h3>
+                <div class="post-info">
+                    <p>ID: 004</p>
+                    <p>Artist: Bob Brown</p>
+                    <p>Cost: $800</p>
+                </div>
+                <a href="{% url 'buy' %}" class="buy-button">Buy Now</a>
+            </div>
+            <div class="post">
+                <img src="{% static 'cubist painting.jpg' %}" alt="Cubist Painting">
+                <h3>CUBIST PAINTING</h3>
+                <div class="post-info">
+                    <p>ID: 005</p>
+                    <p>Artist: Carol Davis</p>
+                    <p>Cost: $900</p>
+                </div>
+                <a href="{% url 'buy' %}" class="buy-button">Buy Now</a>
+            </div>
+            <div class="post">
+                <img src="{% static 'Surrealist painting.jpg' %}" alt="Surrealistic Painting">
+                <h3>SURREALISTIC PAINTING</h3>
+                <div class="post-info">
+                    <p>ID: 006</p>
+                    <p>Artist: Dave Wilson</p>
+                    <p>Cost: $1000</p>
+                </div>
+                <a href="{% url 'buy' %}" class="buy-button">Buy Now</a>
+            </div>
+            <div class="post">
+                <img src="{% static 'realist painting.jpg' %}" alt="Realistic Painting">
+                <h3>REALISTIC PAINTING</h3>
+                <div class="post-info">
+                    <p>ID: 007</p>
+                    <p>Artist: Emily Moore</p>
+                    <p>Cost: $1100</p>
+                </div>
+                <a href="{% url 'buy' %}" class="buy-button">Buy Now</a>
+            </div>
+            <div class="post">
+                <img src="{% static 'impressionist painting.jpg' %}" alt="Impressionist Painting">
+                <h3>IMPRESSIONIST PAINTING</h3>
+                <div class="post-info">
+                    <p>ID: 008</p>
+                    <p>Artist: Frank Taylor</p>
+                    <p>Cost: $1200</p>
+                </div>
+                <a href="{% url 'buy' %}" class="buy-button">Buy Now</a>
             </div>
         </div>
-        </div>
+    </div>
     <div class="col-lg-3 col-md-6 col-sm-6 col-12 px-5 mb-5">
-        <ul class="tm-social-links d-flex justify-content-end pl-0 mb-5">
-            <li class="mb-2"><a href="https://facebook.com"><i class="fab fa-facebook"></i></a></li>
-            <li class="mb-2"><a href="https://twitter.com"><i class="fab fa-twitter"></i></a></li>
-            <li class="mb-2"><a href="https://instagram.com"><i class="fab fa-instagram"></i></a></li>
-            <li class="mb-2"><a href="https://pinterest.com"><i class="fab fa-pinterest"></i></a></li>
-        </ul>
         <a href="#" class="tm-text-gray text-right d-block mb-2">Terms of Use</a>
         <a href="#" class="tm-text-gray text-right d-block">Privacy Policy</a>
-        </div>
+    </div>
 </body>
 </html>

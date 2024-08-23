@@ -9,7 +9,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth import login
 from .forms import SignUpForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-
+from .models import Painting
 from .forms import OrderForm
 
 def buy(request):
@@ -68,8 +68,11 @@ def about(request):
 def forgotpassword(request):
     return render(request, 'forgotpassword.html')
 
+
+
 def loggedin(request):
-    return render(request, 'loggedin.html')
+    paintings = Painting.objects.all()
+    return render(request, 'loggedin.html', {'paintings': paintings})
 
 def post(request):
     return render(request, 'post.html')

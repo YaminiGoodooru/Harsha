@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.utils.translation import gettext_lazy as _
-from .models import Order
+from .models import Order,Painting
 
 # Optionally, unregister the default User admin
 admin.site.unregister(User)
@@ -25,3 +25,4 @@ class UserAdmin(BaseUserAdmin):
 admin.site.register(User, UserAdmin)
 
 admin.site.register(Order)
+admin.site.register(Painting)
