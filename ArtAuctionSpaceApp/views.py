@@ -9,6 +9,17 @@ from django.contrib.auth import authenticate, login
 from .forms import SignUpForm,PaintingsForm,OrderForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import Paintings
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def profile(request):
+    # Get the current logged-in user
+    user = request.user
+    # Pass the user details to the template
+    return render(request, 'profile.html', {
+        'username': user.username,
+        'email': user.email,
+    })
 
 def buy(request):
     if request.method == 'POST':
@@ -82,9 +93,6 @@ def post(request):
 
     return render(request, 'post.html', {'form': form})
 
-def profile(request):
-    return render(request, 'profile.html')
-
 def bankdetails(request):
     return render(request, 'bankdetails.html')
 
@@ -93,3 +101,6 @@ def vieworders(request):
 
 def logout(request):
     return render(request, 'home.html')
+
+def editprofile(request):
+    return render(request,'editprofile.html')
