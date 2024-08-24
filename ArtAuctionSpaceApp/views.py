@@ -6,10 +6,12 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login
-from .forms import SignUpForm,PaintingsForm,OrderForm
+from .forms import SignUpForm,PaintingsForm,OrderForm,ProfileForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import Paintings
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import update_session_auth_hash
+
 
 @login_required
 def profile(request):
@@ -104,15 +106,17 @@ def logout(request):
 
 def editprofile(request):
     if request.method == 'POST':
-        # Handle form submission here
-        # Example: Update user information, change password, etc.
-        pass
+        form = ProfileForm(request.POST, instance=request.user)
+        if form.is_valid():
+            user = form.save(commit=False)
+            password = form.cleaned_data.get('password')
+            if password:
+                user.set_password(password)
+            user.save()
+            update_session_auth_hash(request, user)  # Keeps the user logged in after password change
+            messages.success(request, 'Profile updated successfully')
+            return redirect('profile')  # Redirect to profile page or another page
+    else:
+        form = ProfileForm(instance=request.user)
     
-    # Get the current logged-in user
-    user = request.user
-    
-    # Pass user details to the template
-    return render(request, 'editprofile.html', {
-        'username': user.username,
-        'email': user.email,
-    })
+    return render(request, 'editprofile.html', {'form': form})

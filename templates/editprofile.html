@@ -66,8 +66,7 @@
         }
         .settings-container input[type="text"],
         .settings-container input[type="email"],
-        .settings-container input[type="password"],
-        .settings-container input[type="file"] {
+        .settings-container input[type="password"] {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
@@ -109,16 +108,16 @@
         </div>
     </div>
     <div class="settings-container">
-        <h1><b>Profile Settings</b></h1>
-        <form method="POST" enctype="multipart/form-data">
+        <h1>Profile Settings</h1>
+        <form method="POST">
             {% csrf_token %}
             <div class="form-group">
                 <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" placeholder="Your Name" value="{{ username }}" required>
+                <input type="text" id="name" name="name" placeholder="Your Name" value="{{ form.first_name.value }} {{ form.last_name.value }}" required>
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Your Email" value="{{ email }}" required>
+                <input type="email" id="email" name="email" placeholder="Your Email" value="{{ form.email.value }}" required>
             </div>
             <div class="form-group">
                 <label for="password">New Password</label>
@@ -126,13 +125,28 @@
             </div>
             <div class="form-group">
                 <label for="confirm-password">Confirm New Password</label>
-                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password">
+                <input type="password" id="confirm-password" name="confirm_password" placeholder="Confirm Password">
             </div>
             <div class="button-container">
                 <button type="submit">Submit</button>
                 <a href="{% url 'profile' %}" class="button">BACK</a>
             </div>
-        </form>
+            {% if form.errors %}
+    <div class="alert alert-danger">
+        <ul>
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
+        </form>        
     </div>
 </body>
 </html>
