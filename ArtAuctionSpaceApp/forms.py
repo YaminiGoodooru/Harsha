@@ -10,7 +10,7 @@ class ProfileForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'password']
+        fields = ['username', 'first_name', 'last_name', 'email', 'password']
 
     def clean(self):
         cleaned_data = super().clean()
@@ -19,7 +19,7 @@ class ProfileForm(forms.ModelForm):
 
         if password and password != confirm_password:
             self.add_error('confirm_password', "Passwords do not match")
-            
+
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
