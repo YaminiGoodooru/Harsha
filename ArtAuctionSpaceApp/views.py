@@ -103,4 +103,16 @@ def logout(request):
     return render(request, 'home.html')
 
 def editprofile(request):
-    return render(request,'editprofile.html')
+    if request.method == 'POST':
+        # Handle form submission here
+        # Example: Update user information, change password, etc.
+        pass
+    
+    # Get the current logged-in user
+    user = request.user
+    
+    # Pass user details to the template
+    return render(request, 'editprofile.html', {
+        'username': user.username,
+        'email': user.email,
+    })
