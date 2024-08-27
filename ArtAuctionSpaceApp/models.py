@@ -23,6 +23,7 @@ class Order(models.Model):
 class Paintings(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,default=1)
     email = models.EmailField()  # Removed default value
+    pid=models.IntegerField(default=0)
     artname = models.CharField(max_length=100)  # Removed default value
     artistname = models.CharField(max_length=255)  # Removed default value
     materials = models.TextField()  # Removed default value
