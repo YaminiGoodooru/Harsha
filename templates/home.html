@@ -1,75 +1,184 @@
-{% extends "base.html" %}
-{% load static %} 
-
-{% block content %}
+{% extends "base.html" %} {% load static %} {% block content %}
 <div class="container-fluid upperpart mb-5">
-<div class="d-flex justify-content-around">
-<p class="text text-center my-5" style="font-size: 22px;"><span class="background:transparwnt;"></span>CREATIVITY TAKES COURAGE </p>
-<button class="my-5" id="Explore_btn"><a href="#gallery-section" style="color:black;font-weight: bold;">Explore More</a></button>
-
+  <div class="d-flex justify-content-around">
+    <p class="text text-center my-5" style="font-size: 22px">
+      <span class="background:transparwnt;"></span>CREATIVITY TAKES COURAGE
+    </p>
+    <button class="my-5" id="Explore_btn">
+      <a href="#gallery-section" style="color: black; font-weight: bold"
+        >Explore More</a
+      >
+    </button>
+  </div>
+  <!-- Image Gallery -->
+  <div class="container-fluid upperpart mb-5">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="image-container">
+          <img
+            src="{% static 'oil painting.jpg' %}"
+            alt=""
+            class="img img-fluid"
+            style="height: 300px"
+          />
+          <h3>OIL PAINTING</h3>
+          <p>
+            Oil painting is a technique that uses pigments mixed with a drying
+            oil (usually linseed oil) to create art. It is known for its rich,
+            vibrant colors, and the slow drying time allows for blending and
+            layering. Example: "Starry Night" by Vincent van Gogh.
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="image-container">
+          <img
+            src="{% static 'waterlilles.jpg' %}"
+            alt=""
+            class="img img-fluid"
+            style="height: 300px"
+          />
+          <h3>WATERCOLOR PAINTING</h3>
+          <p>
+            Watercolor painting is characterized by its transparent and delicate
+            quality. Artists use watercolor pigments, typically in the form of
+            small tubes or pans, mixed with water to create their artworks.
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="image-container">
+          <img
+            src="{% static 'abstract painting.jpg' %}"
+            alt=""
+            class="img img-fluid"
+            style="height: 300px"
+          />
+          <h3>ABSTRACT PAINTING</h3>
+          <p>
+            Abstract painting is a dynamic and expressive form of art that
+            liberates artists from the confines of representing recognizable
+            objects. Instead, it harnesses the power of color, shape, form, and
+            texture to convey emotions, ideas, and sensations.
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="image-container">
+          <img
+            src="{% static 'acrylic painting.jpg' %}"
+            alt=""
+            class="img img-fluid"
+            style="height: 300px"
+          />
+          <h3>ACRYLIC PAINTING</h3>
+          <p>
+            Acrylic Painting has become extremely popular today with artists and
+            crafts men and women all over the world. No longer do we have to
+            worry about odors and allergies to solvents, so common to oil
+            painting.
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="image-container">
+          <img
+            src="{% static 'cubist painting.jpg' %}"
+            alt=""
+            class="img img-fluid"
+            style="height: 300px"
+          />
+          <h3>CUBIST PAINTING</h3>
+          <p>
+            Cubist painting, born in the early 20th century with artists like
+            Pablo Picasso and Georges Braque, revolutionized the art world by
+            deconstructing objects and subjects into geometric shapes and
+            fragmented forms. This innovative style presents multiple
+            perspectives within a single artwork, challenging traditional
+            notions of representation and perception.
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="image-container">
+          <img
+            src="{% static 'Surrealist painting.jpg' %}"
+            alt=""
+            class="img img-fluid"
+            style="height: 300px"
+          />
+          <h3>SURREALISTIC PAINTING</h3>
+          <p>
+            Surrealist painting, a prominent movement in the 20th century led by
+            artists like Salvador Dalí and René Magritte, explores the world of
+            dreams and the subconscious mind. Surrealist artworks often feature
+            bizarre, dreamlike, and fantastical imagery, creating a sense of
+            mystery and irrationality.
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="image-container">
+          <img
+            src="{% static 'realist painting.jpg' %}"
+            alt=""
+            class="img img-fluid"
+            style="height: 300px"
+          />
+          <h3>REALISTIC PAINTING</h3>
+          <p>
+            Realistic painting, a traditional art form that has evolved over
+            centuries, strives to depict subjects with meticulous attention to
+            detail and accuracy, aiming to capture a faithful representation of
+            the real world. Realistic painters use techniques like shading,
+            perspective, and fine brushwork to create images that closely
+            resemble the subjects they depict, whether it's a portrait, still
+            life, or landscape.
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="image-container">
+          <img
+            src="{% static 'impressionist painting.jpg.crdownload' %}"
+            alt=""
+            class="img img-fluid"
+            style="height: 300px"
+          />
+          <h3 id="gallery-section">IMPRESSIONIST PAINTING</h3>
+          <p>
+            Impressionist painting, pioneered in the late 19th century by
+            artists like Claude Monet and Pierre-Auguste Renoir, is renowned for
+            its focus on capturing the fleeting effects of light, color, and
+            atmosphere in a scene. This movement aimed to convey the immediate
+            sensory experience of a moment rather than providing a precise
+            representation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid footer bg-dark text-white">
+    <div class="row">
+      <div class="col-lg-4 col-md-5">
+        <ul class="nav d-flex flex-column">
+          <li class="nav-item">
+            <a href="{% url 'login' %}" class="text-white">Login</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'signup' %}" class="text-white">Sign Up</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'about' %}" class="text-white">About Us</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <p class="text-center mt-3" style="margin: 0">
+          &copy; ArtGallery 2024-25
+        </p>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
 </div>
-<!-- Image Gallery -->
-<div class="container-fluid upperpart mb-5">
-  <div class="row">
-    <div class="col-lg-4">
-                <div class="image-container">
-                  <img src="{% static 'oil painting.jpg' %}" alt="" class="img img-fluid" style="height: 300px;">
-                  <h3>OIL PAINTING</h3>
-                  <p>Oil painting is a technique that uses pigments mixed with a drying oil (usually linseed oil) to create art. It is known for its rich, vibrant colors, and the slow drying time allows for blending and layering.
-                    Example: "Starry Night" by Vincent van Gogh.</p>
-                </div>
-              </div>
-              <div class="col-lg-4">
-                <div class="image-container">
-                  <img src="{% static 'waterlilles.jpg' %}" alt="" class="img img-fluid" style="height: 300px;">
-                  <h3>WATERCOLOR PAINTING</h3>
-                  <p>Watercolor painting is characterized by its transparent and delicate quality. Artists use watercolor pigments, typically in the form of small tubes or pans, mixed with water to create their artworks.</p>
-                </div>
-              </div>
-             <div class="col-lg-4">
-                <div class="image-container">
-                  <img src="{% static 'abstract painting.jpg' %}" alt="" class="img img-fluid" style="height: 300px;">
-                  <h3>ABSTRACT PAINTING</h3>
-                  <p>Abstract painting is a dynamic and expressive form of art that liberates artists from the confines of representing recognizable objects. Instead, it harnesses the power of color, shape, form, and texture to convey emotions, ideas, and sensations.</p>
-                </div>
-              </div>
-              <div class="col-lg-4">
-                <div class="image-container">
-                    <img src="{% static 'acrylic painting.jpg' %}" alt="" class="img img-fluid" style="height: 300px;">
-                  <h3>ACRYLIC PAINTING</h3>
-                  <p>Acrylic Painting has become extremely popular today with artists and 
-                    crafts men and women all over the world. No longer do we have to worry 
-                    about odors and allergies to solvents, so common to oil painting. </p>
-                </div>
-              </div>
-              <div class="col-lg-4">
-                <div class="image-container">
-                  <img src="{% static 'cubist painting.jpg' %}" alt="" class="img img-fluid" style="height: 300px;">
-                  <h3>CUBIST PAINTING</h3>
-                  <p>Cubist painting, born in the early 20th century with artists like Pablo Picasso and Georges Braque, revolutionized the art world by deconstructing objects and subjects into geometric shapes and fragmented forms. This innovative style presents multiple perspectives within a single artwork, challenging traditional notions of representation and perception.</p>
-                </div>
-              </div>
-              <div class="col-lg-4">
-                <div class="image-container">
-                  <img src="{% static 'Surrealist painting.jpg' %}" alt="" class="img img-fluid" style="height: 300px;">
-                  <h3>SURREALISTIC PAINTING</h3>
-                  <p>Surrealist painting, a prominent movement in the 20th century led by artists like Salvador Dalí and René Magritte, explores the world of dreams and the subconscious mind. Surrealist artworks often feature bizarre, dreamlike, and fantastical imagery, creating a sense of mystery and irrationality.</p>
-                </div>
-              </div>
-              <div class="col-lg-4">
-                <div class="image-container">
-                  <img src="{% static 'realist painting.jpg' %}" alt="" class="img img-fluid" style="height: 300px;">
-                  <h3>REALISTIC PAINTING</h3>
-                  <p>Realistic painting, a traditional art form that has evolved over centuries, strives to depict subjects with meticulous attention to detail and accuracy, aiming to capture a faithful representation of the real world. Realistic painters use techniques like shading, perspective, and fine brushwork to create images that closely resemble the subjects they depict, whether it's a portrait, still life, or landscape.</p>
-                </div>
-              </div>
-              <div class="col-lg-4">
-                <div class="image-container">
-                  <img src="{% static 'impressionist painting.jpg.crdownload' %}" alt="" class="img img-fluid" style="height: 300px;">
-                  <h3 id="gallery-section">IMPRESSIONIST PAINTING</h3>
-                  <p>Impressionist painting, pioneered in the late 19th century by artists like Claude Monet and Pierre-Auguste Renoir, is renowned for its focus on capturing the fleeting effects of light, color, and atmosphere in a scene. This movement aimed to convey the immediate sensory experience of a moment rather than providing a precise representation.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          {% endblock %}

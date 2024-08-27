@@ -11,9 +11,13 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import Paintings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.decorators import login_required
+from .models import Order
 
-
-@login_required
+def vieworders(request):
+    # Assuming 'Orders' is the model and it has a foreign key to the user or a buyer field
+    orderdetails = Order.objects.filter(email=request.user.email)
+    return render(request, 'vieworders.html', {'orderdetails': orderdetails})
 def profile(request):
     # Get the current logged-in user
     user = request.user
@@ -55,20 +59,16 @@ def signup_view(request):
     return render(request, 'signup.html', {'form': form})
 
 def login_view(request):
-    if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
-        if form.is_valid():
-            user = form.get_user()
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
             login(request, user)
-            messages.success(request, 'Login successful.')
-            return redirect('loggedin')  # Redirect to a home page or dashboard
+            return redirect('loggedin')  # Redirect to home or any other page after login
         else:
-            messages.error(request, 'Invalid username or password.')
-    else:
-        form = AuthenticationForm()
-
-    return render(request, 'login.html', {'form': form})
-
+            messages.error(request, "Invalid username or password.")
+    return render(request, 'login.html')
 
 def home(request):
     return render(request, 'home.html')
@@ -97,9 +97,6 @@ def post(request):
 
 def bankdetails(request):
     return render(request, 'bankdetails.html')
-
-def vieworders(request):
-    return render(request, 'vieworders.html')
 
 def logout(request):
     return render(request, 'home.html')

@@ -14,6 +14,123 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #f9f9f9;
+        }
+        #header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #009999;
+            color: white;
+            padding: 15px 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        #header .logo {
+            display: flex;
+            align-items: center;
+        }
+        #header .logo img {
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        #header .logo .logo-text {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+        }
+        #header .navigation {
+            display: flex;
+            gap: 20px;
+        }
+        #header .navigation a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+        #header .navigation a:hover {
+            color: #e0e0e0;
+        }
+        #latest-paintings {
+            background-color: #e0f2f1; /* Light teal background */
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #009999; /* Matching border color */
+            margin-bottom: 20px;
+        }
+        #latest-paintings h2 {
+            color: #009999; /* Matching text color */
+            font-size: 28px;
+            margin: 0;
+        }
+        #post-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .post {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        .post img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .post h3 {
+            font-size: 22px;
+            margin: 10px 0;
+            color: #333;
+        }
+        .post-info {
+            margin: 15px 0;
+            font-size: 16px;
+            color: #666;
+        }
+        .buy-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #009999;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .buy-button:hover {
+            background-color: #007f7f;
+        }
+        .footer {
+            background-color: #009999;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .footer a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+        .footer a:hover {
+            color: #e0e0e0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
         }
         #header {
             display: flex;
@@ -121,14 +238,16 @@
 <body>
     <div id="header">
         <div class="logo">
-            <img src="{% static 'G.jpg' %}" alt="ARY GALLERY" height="75" class="rounded-circle">
+            <img src="{% static 'G.jpg' %}" alt="ART GALLERY" height="60">
             <span class="logo-text">ART GALLERY</span>
         </div>
         <div class="navigation">
-            <a href="{% url 'vieworders' %}">View Orders</a>
+            <a href="{% url 'loggedin' %}">Home</a>
+            <a href="{% url 'buy' %}">Buy</a>
             <a href="{% url 'post' %}">Post</a>
             <a href="{% url 'profile' %}">Profile</a>
-            <a href="{% url 'logout' %}">Logout</a>
+            <a href="{% url 'vieworders' %}">View Orders</a>
+            <a href="{% url 'logout'%}">Logout</a>
         </div>
     </div>
     <div class="profile">
