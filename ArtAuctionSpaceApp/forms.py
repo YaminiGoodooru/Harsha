@@ -56,3 +56,15 @@ class PaintingsForm(forms.ModelForm):
             'email', 'artname', 'artistname', 'materials',
             'mobileno', 'upi_id', 'price', 'description', 'image'
         ]
+
+class ForgotPasswordForm(forms.Form):
+    email = forms.EmailField(label="Email", max_length=254)
+
+class ResetPasswordForm(forms.Form):
+    otp = forms.CharField(label="OTP", max_length=6)
+    new_password = forms.CharField(label="New Password", widget=forms.PasswordInput)
+
+class ContactForm(forms.Form):
+    name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'placeholder': 'Your Name'}))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'Your Email'}))
+    message = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Your Message'}))

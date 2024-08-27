@@ -6,13 +6,74 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login
-from .forms import SignUpForm,PaintingsForm,OrderForm,ProfileForm
+from .forms import SignUpForm,PaintingsForm,OrderForm,ProfileForm,ContactForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import Paintings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from .models import Order
+from django.shortcuts import render, redirect
+from django.core.mail import send_mail
+from django.contrib.auth.models import User
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes, force_str
+from django.contrib.sites.shortcuts import get_current_site
+from django.template.loader import render_to_string
+from django.contrib.auth.forms import SetPasswordForm
+from django.contrib.auth import get_user_model
+from .forms import ForgotPasswordForm,ResetPasswordForm
+from django.core.mail import send_mail
+#User = get_user_model()
+import random
+import string
+
+def forgotpassword(request):
+    if request.method == 'POST':
+        form = ForgotPasswordForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            otp = ''.join(random.choices(string.ascii_letters + string.digits, k=6))
+            # Save the OTP and email to the session or database for verification later
+            request.session['otp'] = otp
+            request.session['email'] = email
+            # Send email with the OTP
+            send_mail(
+                'Password Reset Request',
+                f'Your OTP is: {otp}',
+                'from@example.com',  # Replace with your email address
+                [email],
+                fail_silently=False,
+            )
+            messages.success(request, 'A password reset email has been sent.')
+            return redirect('resetpassword')  # Redirect to a page where the user can enter the OTP
+    else:
+        form = ForgotPasswordForm()
+    return render(request, 'forgotpassword.html', {'form': form})
+
+def reset_password(request):
+    if request.method == 'POST':
+        form = ResetPasswordForm(request.POST)
+        if form.is_valid():
+            otp = form.cleaned_data['otp']
+            new_password = form.cleaned_data['new_password']
+            if otp == request.session.get('otp'):
+                email = request.session.get('email')
+                # Here you should reset the password for the user with this email
+                # This depends on your user model and how you handle passwords
+                # For example, you might use Django's built-in user model:
+                user = User.objects.get(email=email)
+                user.set_password(new_password)
+                user.save()
+                messages.success(request, 'Your password has been reset successfully.')
+                return redirect('login')  # Redirect to the login page after resetting the password
+            else:
+                messages.error(request, 'Invalid OTP.')
+    else:
+        form = ResetPasswordForm()
+    return render(request, 'resetpassword.html', {'form': form})
+
 
 def vieworders(request):
     # Assuming 'Orders' is the model and it has a foreign key to the user or a buyer field
@@ -117,3 +178,34 @@ def editprofile(request):
         form = ProfileForm(instance=request.user)
     
     return render(request, 'editprofile.html', {'form': form})
+
+def posts(request):
+    user_paintings = Paintings.objects.filter(user=request.user)
+    context = {
+        'userposts': {
+            'paintings': user_paintings
+        }
+    }
+    return render(request, 'posts.html', context)
+
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+
+            # Send email
+            send_mail(
+                subject=f'Contact Form Submission from {name}',
+                message=message,
+                from_email=email,
+                recipient_list=['yaminig3006@gmail.com'],  # Your email address
+                fail_silently=False,
+            )
+
+            return redirect('contact')  # Redirect to a success page or wherever you like
+    else:
+        form = ContactForm()
+    return render(request,'contact.html')

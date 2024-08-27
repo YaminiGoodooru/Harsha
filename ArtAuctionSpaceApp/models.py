@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings
 
 class Order(models.Model):
     pid = models.IntegerField()
@@ -20,6 +21,7 @@ class Order(models.Model):
 
 
 class Paintings(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,default=1)
     email = models.EmailField()  # Removed default value
     artname = models.CharField(max_length=100)  # Removed default value
     artistname = models.CharField(max_length=255)  # Removed default value
@@ -28,7 +30,7 @@ class Paintings(models.Model):
     upi_id = models.CharField(max_length=50)  # Removed default value
     price = models.IntegerField()  # Removed default value
     description = models.TextField()  # Removed default value
-    image = models.ImageField(upload_to='art_images/')  # Removed default value
+    image = models.ImageField(upload_to='paintings/')  # Removed default value
 
     def __str__(self):
         return self.artname

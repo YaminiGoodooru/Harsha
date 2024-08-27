@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8f8; /* Soft background color */
+        }
+        #header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #009999; /* Header background color */
+            color: white;
+            padding: 10px 20px;
+        }
+        #header .navigation {
+            display: flex;
+            gap: 20px;
+        }
+        #header .navigation a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        #header .navigation a:hover {
+            background-color: #007b8a; /* Hover effect */
+        }
+        .container {
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #009999; /* Heading color */
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        input[type="text"], input[type="email"], textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        textarea {
+            resize: vertical;
+        }
+        .form-buttons {
+            display: flex;
+            gap: 10px; /* Space between buttons */
+        }
+        .btn-custom {
+            background-color: #009999; /* Button color */
+            color: #fff;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            flex: 1; /* Ensure buttons are the same width */
+        }
+        .btn-custom:hover {
+            background-color: #007b8a; /* Darker shade for hover effect */
+        }
+        .btn-back {
+            background-color: #f0f8f8; /* Background color for back button */
+            color: #009999; /* Text color for back button */
+            border: 1px solid #009999; /* Border color for back button */
+        }
+        .btn-back:hover {
+            background-color: #e0f0f0; /* Lighter shade for hover effect */
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <div class="logo">
+            <img src="{% static 'G.jpg' %}" alt="ART GALLERY" height="60">
+            <span class="logo-text">ART GALLERY</span>
+        </div>
+        <div class="navigation">
+            <a href="{% url 'loggedin' %}">Home</a>
+            <a href="{% url 'buy' %}">Buy</a>
+            <a href="{% url 'post' %}">Post</a>
+            <a href="{% url 'profile' %}">Profile</a>
+            <a href="{% url 'contact' %}">Contact Us</a>
+            <a href="{% url 'logout' %}">Logout</a>
+        </div>
+    </div>
+    <div class="container">
+        <h2>Contact Us</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="contact-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+
+                <div class="form-buttons">
+                    <button type="submit" class="btn-custom">Send Message</button>
+                    <a href="{% url 'loggedin' %}" class="btn-custom">Back</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
