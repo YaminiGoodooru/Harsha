@@ -143,7 +143,8 @@ def forgotpassword(request):
 
 
 def loggedin(request):
-    return render(request,'loggedin.html')
+    paintings = Paintings.objects.all()
+    return render(request, 'loggedin.html', {'paintings': paintings})
 
 def post(request):
     if request.method == 'POST':

@@ -8,6 +8,10 @@ from .models import Order,Paintings
 # Optionally, unregister the default User admin
 admin.site.unregister(User)
 
+class PaintingAdmin(admin.ModelAdmin):
+    list_display = ( 'image','name', 'pid', 'artist', 'cost',)
+    search_fields = ('name', 'pid', 'artist')
+
 # Define a custom User admin
 class UserAdmin(BaseUserAdmin):
     # Define the fields to be used in displaying the User model

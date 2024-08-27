@@ -136,122 +136,26 @@
         <a href="{% url 'buy' %}">Buy</a>
         <a href="{% url 'post' %}">Post</a>
         <a href="{% url 'profile' %}">Profile</a>
-        <a href="{% url 'contact'%}">Contact Us</a>
-        <a href="{% url 'logout'%}">Logout</a>
+        <a href="{% url 'contact' %}">Contact Us</a>
+        <a href="{% url 'logout' %}">Logout</a>
       </div>
     </div>
     <div id="latest-paintings">
       <h2>Latest Paintings</h2>
     </div>
     <div id="post-grid">
+      {% for painting in paintings %}
       <div class="post">
-        <img src="{% static 'oil painting.jpg' %}" alt="Oil Painting" />
-        <h3>Oil Painting</h3>
+        <img src="{{ painting.image.url }}" alt="{{ painting.name }}" />
+        <h3>{{ painting.artname }}</h3>
         <div class="post-info">
-          <p>ID: 001</p>
-          <p>Artist: John Doe</p>
-          <p>Cost: $500</p>
+          <p>ID: {{ painting.pid }}</p>
+          <p>Artist: {{ painting.artistname }}</p>
+          <p>Cost: ${{ painting.price }}</p>
         </div>
-        <a href="{% url 'buy' %}?pid=001&cost=500" class="buy-button"
-          >Buy Now</a
-        >
+        <a href="{% url 'buy' %}?pid={{ painting.pid }}&cost={{ painting.cost }}" class="buy-button">Buy Now</a>
       </div>
-      <div class="post">
-        <img src="{% static 'waterlilles.jpg' %}" alt="Watercolor Painting" />
-        <h3>Watercolor Painting</h3>
-        <div class="post-info">
-          <p>ID: 002</p>
-          <p>Artist: Jane Smith</p>
-          <p>Cost: $600</p>
-        </div>
-        <a href="{% url 'buy' %}?pid=002&cost=600" class="buy-button"
-          >Buy Now</a
-        >
-      </div>
-      <div class="post">
-        <img
-          src="{% static 'abstract painting.jpg' %}"
-          alt="Abstract Painting"
-        />
-        <h3>Abstract Painting</h3>
-        <div class="post-info">
-          <p>ID: 003</p>
-          <p>Artist: Alice Johnson</p>
-          <p>Cost: $700</p>
-        </div>
-        <a href="{% url 'buy' %}?pid=003&cost=700" class="buy-button"
-          >Buy Now</a
-        >
-      </div>
-      <div class="post">
-        <img src="{% static 'acrylic painting.jpg' %}" alt="Acrylic Painting" />
-        <h3>Acrylic Painting</h3>
-        <div class="post-info">
-          <p>ID: 004</p>
-          <p>Artist: Bob Brown</p>
-          <p>Cost: $800</p>
-        </div>
-        <a href="{% url 'buy' %}?pid=004&cost=800" class="buy-button"
-          >Buy Now</a
-        >
-      </div>
-      <div class="post">
-        <img src="{% static 'cubist painting.jpg' %}" alt="Cubist Painting" />
-        <h3>Cubist Painting</h3>
-        <div class="post-info">
-          <p>ID: 005</p>
-          <p>Artist: Carol Davis</p>
-          <p>Cost: $900</p>
-        </div>
-        <a href="{% url 'buy' %}?pid=005&cost=900" class="buy-button"
-          >Buy Now</a
-        >
-      </div>
-      <div class="post">
-        <img
-          src="{% static 'Surrealist painting.jpg' %}"
-          alt="Surrealistic Painting"
-        />
-        <h3>Surrealistic Painting</h3>
-        <div class="post-info">
-          <p>ID: 006</p>
-          <p>Artist: Dave Wilson</p>
-          <p>Cost: $1000</p>
-        </div>
-        <a href="{% url 'buy' %}?pid=006&cost=1000" class="buy-button"
-          >Buy Now</a
-        >
-      </div>
-      <div class="post">
-        <img
-          src="{% static 'realist painting.jpg' %}"
-          alt="Realistic Painting"
-        />
-        <h3>Realistic Painting</h3>
-        <div class="post-info">
-          <p>ID: 007</p>
-          <p>Artist: Emily Moore</p>
-          <p>Cost: $1100</p>
-        </div>
-        <a href="{% url 'buy' %}?pid=007&cost=1100" class="buy-button"
-          >Buy Now</a
-        >
-      </div>
-      <div class="post">
-        <img
-          src="{% static 'impressionist painting.jpg' %}"
-          alt="Impressionist Painting"
-        />
-        <h3>Impressionist Painting</h3>
-        <div class="post-info">
-          <p>ID: 008</p>
-          <p>Artist: Frank Taylor</p>
-          <p>Cost: $1200</p>
-        </div>
-        <a href="{% url 'buy' %}?pid=008&cost=1200" class="buy-button"
-          >Buy Now</a
-        >
-      </div>
+      {% endfor %}
     </div>
     <div class="footer">
       <a href="#">Terms of Use</a>
