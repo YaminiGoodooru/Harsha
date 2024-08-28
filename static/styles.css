@@ -5,7 +5,28 @@ body {
 .one{
   color: #fff;
 }
+.navbar-nav{
+  display: flex;
+  gap: 20px;
+}
+.nav-link{
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
 .nav-item{
+  color: white;
+}
+.logo {
+  display: flex;
+  align-items: center;
+}
+.logo img {
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.logo .logo-text {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 28px;
+  font-weight: bold;
   color: white;
 }
 .navbar {
