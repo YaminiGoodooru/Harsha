@@ -29,7 +29,7 @@ class Paintings(models.Model):
     materials = models.TextField()  # Removed default value
     mobileno = models.CharField(max_length=15)  # Removed default value
     upi_id = models.CharField(max_length=50)  # Removed default value
-    price = models.IntegerField()  # Removed default value
+    cost= models.IntegerField()  # Removed default value
     description = models.TextField()  # Removed default value
     image = models.ImageField(upload_to='paintings/')  # Removed default value
 

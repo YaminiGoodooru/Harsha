@@ -2,253 +2,303 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<title>Place Order | ArtGallery</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f9f9f9;
-    }
-    #header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: #009999;
-        color: white;
-        padding: 15px 30px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    #header .logo {
-        display: flex;
-        align-items: center;
-    }
-    #header .logo img {
-        border-radius: 50%;
-        margin-right: 10px;
-    }
-    #header .logo .logo-text {
-        font-size: 28px;
-        font-weight: bold;
-        color: white;
-    }
-    #header .navigation {
-        display: flex;
-        gap: 20px;
-    }
-    #header .navigation a {
-        color: white;
-        text-decoration: none;
-        font-size: 18px;
-        transition: color 0.3s;
-    }
-    #header .navigation a:hover {
-        color: #e0e0e0;
-    }
-    #latest-paintings {
-        background-color: #e0f2f1; /* Light teal background */
-        padding: 20px;
-        text-align: center;
-        border-bottom: 2px solid #009999; /* Matching border color */
-        margin-bottom: 20px;
-    }
-    #latest-paintings h2 {
-        color: #009999; /* Matching text color */
-        font-size: 28px;
-        margin: 0;
-    }
-    #post-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 20px;
-        padding: 20px;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-    .post {
-        background-color: #ffffff;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        text-align: center;
-        transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .post:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    }
-    .post img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 10px;
-    }
-    .post h3 {
-        font-size: 22px;
-        margin: 10px 0;
-        color: #333;
-    }
-    .post-info {
-        margin: 15px 0;
-        font-size: 16px;
-        color: #666;
-    }
-    .buy-button {
-        display: inline-block;
-        padding: 12px 24px;
-        background-color: #009999;
-        color: white;
-        text-decoration: none;
-        border-radius: 5px;
-        font-size: 16px;
-        transition: background-color 0.3s;
-    }
-    .buy-button:hover {
-        background-color: #007f7f;
-    }
-    .footer {
-        background-color: #009999;
-        color: white;
-        padding: 20px;
-        text-align: center;
-    }
-    .footer a {
-        color: white;
-        text-decoration: none;
-        font-size: 16px;
-        margin: 0 10px;
-        transition: color 0.3s;
-    }
-    .footer a:hover {
-        color: #e0e0e0;
-    }
-    body {
-        min-height: 100vh;
-        margin: 0;
-        padding: 0;
-    }
-    #header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: #009999;
-        color: white;
-        padding: 20px 20px;
-    }
-    .card {
-        box-shadow: -10px 10px 12px grey; 
-        width: 600px;
-    }
-    .button {
-        background-color: #009999;
-        color: #fff;
-        padding: 15px 30px; /* Adjust padding for consistent button size */
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        text-decoration: none;
-        font-size: 16px; /* Adjust font size for consistent appearance */
-        display: inline-block; /* Ensures buttons align correctly */
-        text-align: center; /* Centers text inside button */
-        margin: 5px; /* Adds spacing between buttons */
-    }
-    .logo-text {
-        margin-left: 7px;
-        font-size: 40px;
-        display: inline-block;
-        vertical-align: middle;
-        font-weight: bold;
-        color: white;
-    }
-</style>
-<script>
-    // Function to get query parameters from URL
-    function getQueryParams() {
-        const params = {};
-        const queryString = window.location.search.substring(1);
-        const regex = /([^&=]+)=([^&]*)/g;
-        let match;
-        while (match = regex.exec(queryString)) {
-            params[decodeURIComponent(match[1])] = decodeURIComponent(match[2]);
+    <!-- (Include previous head content here) -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Place Order | ArtGallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
         }
-        return params;
-    }
-
-    // Function to calculate total cost
-    function calculateTotalCost() {
-        const cost = parseFloat(document.querySelector('input[name="cost"]').value) || 0;
-        const quantity = parseInt(document.querySelector('input[name="quantity"]').value) || 0;
-        const totalCost = cost * quantity;
-        document.querySelector('input[name="total_cost"]').value = totalCost.toFixed(2);
-    }
-
-    // Function to validate input
-    function validateInput() {
-        const cvv = document.querySelector('input[name="cvv"]').value;
-        const cardNumber = document.querySelector('input[name="card_number"]').value;
-        const city = document.querySelector('input[name="city"]').value;
-        const state = document.querySelector('input[name="state"]').value;
-        const name = document.querySelector('input[name="full_name"]').value;
-
-        // Validate CVV (exactly 3 digits)
-        if (!/^\d{3}$/.test(cvv)) {
-            alert('CVV must be exactly 3 digits.');
-            return false;
+        #header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #009999;
+            color: white;
+            padding: 15px 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-
-        // Validate Card Number (exactly 12 digits)
-        if (!/^\d{12}$/.test(cardNumber)) {
-            alert('Card Number must be exactly 12 digits.');
-            return false;
+        #header .logo {
+            display: flex;
+            align-items: center;
         }
-
-        // Validate City, State, and Name (must not contain numbers)
-        if (/\d/.test(city) || /\d/.test(state) || /\d/.test(name)) {
-            alert('City, State, and Full Name must not contain numbers.');
-            return false;
+        #header .logo img {
+            border-radius: 50%;
+            margin-right: 10px;
         }
+        #header .logo .logo-text {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+        }
+        #header .navigation {
+            display: flex;
+            gap: 20px;
+        }
+        #header .navigation a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+        #header .navigation a:hover {
+            color: #e0e0e0;
+        }
+        #latest-paintings {
+            background-color: #e0f2f1; /* Light teal background */
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #009999; /* Matching border color */
+            margin-bottom: 20px;
+        }
+        #latest-paintings h2 {
+            color: #009999; /* Matching text color */
+            font-size: 28px;
+            margin: 0;
+        }
+        #post-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .post {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        .post img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .post h3 {
+            font-size: 22px;
+            margin: 10px 0;
+            color: #333;
+        }
+        .post-info {
+            margin: 15px 0;
+            font-size: 16px;
+            color: #666;
+        }
+        .buy-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #009999;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .buy-button:hover {
+            background-color: #007f7f;
+        }
+        .footer {
+            background-color: #009999;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .footer a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+        .footer a:hover {
+            color: #e0e0e0;
+        }
+        body {
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        #header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #009999;
+            color: white;
+            padding: 20px 20px;
+        }
+        .card {
+            box-shadow: -10px 10px 12px grey; 
+            width: 600px;
+        }
+        .button {
+            background-color: #009999;
+            color: #fff;
+            padding: 15px 30px; /* Adjust padding for consistent button size */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 16px; /* Adjust font size for consistent appearance */
+            display: inline-block; /* Ensures buttons align correctly */
+            text-align: center; /* Centers text inside button */
+            margin: 5px; /* Adds spacing between buttons */
+        }
+        .logo-text {
+            margin-left: 7px;
+            font-size: 40px;
+            display: inline-block;
+            vertical-align: middle;
+            font-weight: bold;
+            color: white;
+        }
+        /* Ensure consistent styling for all input fields */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+textarea {
+    width: 100%; /* Full width of the parent container */
+    padding: 10px; /* Consistent padding */
+    border: 1px solid #ccc; /* Border color */
+    border-radius: 5px; /* Rounded corners */
+    box-sizing: border-box; /* Ensure padding and border are included in width */
+    margin-bottom: 15px; /* Spacing between input fields */
+}
 
-        return true;
-    }
+input[type="submit"],
+.button {
+    background-color: #009999;
+    color: #fff;
+    padding: 15px 30px; /* Adjust padding for consistent button size */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 16px; /* Adjust font size for consistent appearance */
+    display: inline-block; /* Ensures buttons align correctly */
+    text-align: center; /* Centers text inside button */
+    margin: 5px; /* Adds spacing between buttons */
+}
 
-    // Populate form fields based on query parameters and set up event listeners
-    document.addEventListener('DOMContentLoaded', () => {
-        const params = getQueryParams();
-        // Set the values of the form fields
-        document.querySelector('input[name="pid"]').value = params.pid || '';
-        document.querySelector('input[name="cost"]').value = params.cost || '';
-        document.querySelector('input[name="full_name"]').value = params.name || '';
-        document.querySelector('input[name="phone"]').value = params.phone || '';
-        document.querySelector('input[name="email"]').value = params.email || '';
-        document.querySelector('input[name="street_address"]').value = params.street || '';
-        document.querySelector('input[name="zip"]').value = params.zip || '';
-        document.querySelector('input[name="state"]').value = params.state || '';
-        document.querySelector('input[name="city"]').value = params.city || '';
-        document.querySelector('input[name="quantity"]').value = params.quantity || '';
-        document.querySelector('input[name="card_number"]').value = params.card_no || '';
-        document.querySelector('input[name="cvv"]').value = params.cvv || '';
+input[type="submit"]:hover,
+.button:hover {
+    background-color: #007f7f;
+}
 
-        // Calculate the initial total cost
-        calculateTotalCost();
+/* Adjust form container for better alignment */
+.form-group {
+    margin-bottom: 20px; /* Spacing between form groups */
+}
 
-        // Add event listeners to update the total cost when quantity or cost changes
-        document.querySelector('input[name="quantity"]').addEventListener('input', calculateTotalCost);
-        document.querySelector('input[name="cost"]').addEventListener('input', calculateTotalCost);
+.card {
+    box-shadow: -10px 10px 12px grey; 
+    width: 100%; /* Ensure card takes full width of parent container */
+    max-width: 600px; /* Max width for card */
+    margin: 0 auto; /* Center card horizontally */
+    padding: 20px; /* Add padding inside the card */
+    background-color: #fff; /* Background color for the card */
+    border-radius: 8px; /* Rounded corners for the card */
+}
 
-        // Add form validation before submission
-        document.querySelector('form').addEventListener('submit', (event) => {
-            if (!validateInput()) {
-                event.preventDefault(); // Prevent form submission if validation fails
+    </style>
+    <script>
+        // Function to get query parameters from URL
+        function getQueryParams() {
+            const params = {};
+            const queryString = window.location.search.substring(1);
+            const regex = /([^&=]+)=([^&]*)/g;
+            let match;
+            while (match = regex.exec(queryString)) {
+                params[decodeURIComponent(match[1])] = decodeURIComponent(match[2]);
             }
+            return params;
+        }
+    
+        // Function to calculate total cost
+        function calculateTotalCost() {
+            const cost = parseFloat(document.querySelector('input[name="cost"]').value) || 0;
+            const quantity = parseInt(document.querySelector('input[name="quantity"]').value) || 0;
+            const totalCost = cost * quantity;
+            document.querySelector('input[name="total_cost"]').value = totalCost.toFixed(2);
+        }
+    
+        // Function to validate input
+        function validateInput() {
+            const cvv = document.querySelector('input[name="cvv"]').value;
+            const cardNumber = document.querySelector('input[name="card_number"]').value;
+            const city = document.querySelector('input[name="city"]').value;
+            const state = document.querySelector('input[name="state"]').value;
+            const name = document.querySelector('input[name="full_name"]').value;
+    
+            // Validate CVV (exactly 3 digits)
+            if (!/^\d{3}$/.test(cvv)) {
+                alert('CVV must be exactly 3 digits.');
+                return false;
+            }
+    
+            // Validate Card Number (exactly 12 digits)
+            if (!/^\d{12}$/.test(cardNumber)) {
+                alert('Card Number must be exactly 12 digits.');
+                return false;
+            }
+    
+            // Validate City, State, and Name (must not contain numbers)
+            if (/\d/.test(city) || /\d/.test(state) || /\d/.test(name)) {
+                alert('City, State, and Full Name must not contain numbers.');
+                return false;
+            }
+    
+            return true;
+        }
+    
+        // Populate form fields based on query parameters and set up event listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = getQueryParams();
+            // Set the values of the form fields
+            document.querySelector('input[name="pid"]').value = params.pid || '';
+            document.querySelector('input[name="cost"]').value = params.cost || '';
+            document.querySelector('input[name="full_name"]').value = params.name || '';
+            document.querySelector('input[name="phone"]').value = params.phone || '';
+            document.querySelector('input[name="email"]').value = params.email || '';
+            document.querySelector('input[name="street_address"]').value = params.street || '';
+            document.querySelector('input[name="zip"]').value = params.zip || '';
+            document.querySelector('input[name="state"]').value = params.state || '';
+            document.querySelector('input[name="city"]').value = params.city || '';
+            document.querySelector('input[name="quantity"]').value = params.quantity || '';
+            document.querySelector('input[name="card_number"]').value = params.card_no || '';
+            document.querySelector('input[name="cvv"]').value = params.cvv || '';
+    
+            // Calculate the initial total cost
+            calculateTotalCost();
+    
+            // Add event listeners to update the total cost when quantity or cost changes
+            document.querySelector('input[name="quantity"]').addEventListener('input', calculateTotalCost);
+            document.querySelector('input[name="cost"]').addEventListener('input', calculateTotalCost);
+    
+            // Add form validation before submission
+            document.querySelector('form').addEventListener('submit', (event) => {
+                if (!validateInput()) {
+                    event.preventDefault(); // Prevent form submission if validation fails
+                }
+            });
         });
-    });
-</script>
+    </script>
 </head>
 <body>
     <div id="header">
@@ -261,8 +311,8 @@
             <a href="{% url 'buy' %}">Buy</a>
             <a href="{% url 'post' %}">Post</a>
             <a href="{% url 'profile' %}">Profile</a>
-            <a href="{% url 'contact'%}">Contact Us</a>
-            <a href="{% url 'logout'%}">Logout</a>
+            <a href="{% url 'contact' %}">Contact Us</a>
+            <a href="{% url 'logout' %}">Logout</a>
         </div>
     </div>
     <div class="container">
@@ -272,8 +322,8 @@
                 <div class="col-lg-12 my-5 px-5">
                     <form method="POST">
                         {% csrf_token %}
+                        <!-- Render form fields with consistent styling -->
                         {{ form.as_p }}
-                        <!-- Add Total Cost field -->
                         <div class="form-group">
                             <label for="total_cost">Total Cost</label>
                             <input type="text" name="total_cost" id="total_cost" class="form-control" readonly>

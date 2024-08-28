@@ -53,8 +53,8 @@ class PaintingsForm(forms.ModelForm):
     class Meta:
         model = Paintings
         fields = [
-            'email', 'artname', 'artistname', 'materials',
-            'mobileno', 'upi_id', 'price', 'description', 'image'
+            'email', 'pid','artname', 'artistname', 'materials',
+            'mobileno', 'upi_id', 'cost', 'description', 'image'
         ]
 
 class ForgotPasswordForm(forms.Form):
