@@ -53,7 +53,7 @@ class PaintingsForm(forms.ModelForm):
     class Meta:
         model = Paintings
         fields = [
-            'email', 'pid','artname', 'artistname', 'materials',
+            'email','artname', 'artistname', 'materials',
             'mobileno', 'upi_id', 'cost', 'description', 'image'
         ]
 

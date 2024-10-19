@@ -161,16 +161,26 @@ def loggedin(request):
     paintings = Paintings.objects.all()
     return render(request, 'loggedin.html', {'paintings': paintings})
 
+from django.db import IntegrityError
+
 def post(request):
     if request.method == 'POST':
         form = PaintingsForm(request.POST, request.FILES)  # Handle file uploads
         if form.is_valid():
-            form.save()  # Save form data to the database
-            return redirect('post')  # Redirect to a success page or another view
+            painting = form.save(commit=False)  # Create an instance without saving to DB yet
+            
+            # Automatically assigned by Django; no need to set manually
+            painting.save()  # Now save the painting instance to the database
+            
+            # Optional: Get the pid after saving, if you want to display it
+            pid = painting.pid
+            
+            return render(request, 'post.html', {'form': form, 'pid': pid})  # Render with pid
     else:
         form = PaintingsForm()
-
+        
     return render(request, 'post.html', {'form': form})
+
 
 def bankdetails(request):
     return render(request, 'bankdetails.html')
