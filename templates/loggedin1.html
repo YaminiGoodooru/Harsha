@@ -154,7 +154,6 @@
           <p>Artist: {{ painting.artistname }}</p>
           <p>Cost: ${{ painting.cost }}</p>
         </div>
-        <a href="{% url 'buy' %}?pid={{ painting.pid }}&cost={{ painting.cost }}" class="buy-button">Buy Now</a>
       </div>
       {% endfor %}
     </div>

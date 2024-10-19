@@ -26,7 +26,7 @@ class OrderForm(forms.ModelForm):
         fields = [
            'pid','cost', 'full_name', 'phone','email', 
             'street_address', 'zip', 'state', 'city',
-            'quantity','card_number', 'cvv'
+            'quantity'
         ]
 
 

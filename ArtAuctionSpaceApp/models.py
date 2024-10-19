@@ -13,8 +13,6 @@ class Order(models.Model):
     state = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
     quantity = models.PositiveIntegerField()
-    card_number = models.IntegerField(max_length=16)
-    cvv = models.IntegerField(max_length=4)
 
     def __str__(self):
         return f"Order by {self.full_name}"
