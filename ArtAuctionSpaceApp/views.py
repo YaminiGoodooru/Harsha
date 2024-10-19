@@ -123,12 +123,21 @@ def login_view(request):
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
+        login_type = request.POST.get('login_type', 'artist')  # Get the login type (default is 'artist')
+        
         user = authenticate(request, username=username, password=password)
+        
         if user is not None:
             login(request, user)
-            return redirect('loggedin')  # Redirect to home or any other page after login
+            
+            # Redirect based on login_type
+            if login_type == 'artist':
+                return redirect('artist')  # Replace with your artist page URL name
+            elif login_type == 'customer':
+                return redirect('customer')  # Replace with your customer page URL name
         else:
             messages.error(request, "Invalid username or password.")
+    
     return render(request, 'login.html')
 
 def home(request):
@@ -140,7 +149,13 @@ def about(request):
 def forgotpassword(request):
     return render(request, 'forgotpassword.html')
 
+def artist(request):
+    paintings = Paintings.objects.all()
+    return render(request,'loggedin1.html',{'paintings': paintings})
 
+def customer(request):
+    paintings = Paintings.objects.all()
+    return render(request,'loggedin2.html',{'paintings': paintings})
 
 def loggedin(request):
     paintings = Paintings.objects.all()

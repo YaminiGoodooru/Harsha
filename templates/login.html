@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static %} 
+{% load static %}
 
 {% block content %}
 <div class="container card mt-5 mb-5 p-4" style="max-width: 600px; background: #ffffff; border-radius: 15px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);">
@@ -11,6 +11,7 @@
                 <!-- Login Heading -->
                 <h2 class="text-center mb-2 login-heading">Login Here</h2> <!-- Reduced margin-bottom -->
                 <div class="container mt-3"> <!-- Reduced margin-top -->
+                    <!-- Unified Login Form -->
                     <form method="POST" action="{% url 'login' %}">
                         {% csrf_token %}
                         <div class="form-group">
@@ -19,9 +20,18 @@
                         <div class="form-group">
                             <input type="password" class="form-control my-3" placeholder="Enter your password" name="password" required>
                         </div>
-                        <button type="submit" class="btn btn-success btn-md btn-block">Login</button>
-                        <p class="text-center mt-3"><a href="{% url 'forgotpassword' %}" style="color: #00796b; font-weight: bold;">Forgot password?</a></p>
+                        <!-- Hidden input to identify the login type -->
+                        <input type="hidden" id="loginType" name="login_type" value="artist">
+
+                        <!-- Login buttons for Artist and Customer side by side -->
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-success btn-md mx-2" onclick="document.getElementById('loginType').value='artist'">Login as Artist</button>
+                            <button type="submit" class="btn btn-success btn-md mx-2" onclick="document.getElementById('loginType').value='customer'">Login as Customer</button>
+                        </div>
                     </form>
+
+                    <!-- Forgot Password Link -->
+                    <p class="text-center mt-3"><a href="{% url 'forgotpassword' %}" style="color: #00796b; font-weight: bold;">Forgot password?</a></p>
                 </div>
             </div>
         </div>
